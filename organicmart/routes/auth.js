@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const {signup, signin, signout} = require('../controllers/auth');
-const {userSignupValidator,passwordvalidator} = require('../validator/index');
+const {userSignupValidator,emailvalidator,passwordvalidator} = require('../validator/index');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
@@ -21,9 +21,9 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-function verifySmtp(){
+const verifySmtp = () => {
     // verify connection configuration
-transporter.verify(function (error, success) {
+transporter.verify((error, success) => {
     if (error) {
         console.log(error);
     } else {
@@ -36,7 +36,7 @@ verifySmtp();
 
 const EMAIL = `http://localhost:3000/`;
 
-router.post('/reset-password',(req,res)=>{
+router.post('/reset-password',emailvalidator,(req,res)=>{
     crypto.randomBytes(32,(err,buffer)=>{
         if(err){
             console.log(err)
@@ -87,7 +87,7 @@ router.post('/new-password',passwordvalidator,(req,res)=>{
     })
 })
 
-function genPassword(password) {
+const genPassword = (password) => {
     if(!password) return '';
     try {
         return crypto.createHmac('sha1', this.salt)

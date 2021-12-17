@@ -27,9 +27,10 @@ const Menu = ({ history }) => (
                     <Link className="nav-link" style={isActive(history, "/shop")} to="/shop"><i className="fa fa-fw fa-shopping-bag"></i>Shopping</Link>
                 </li>
 
-                <li className="nav-item">
+                {isAuthenticated() && isAuthenticated().user.role === 0 && (<li className="nav-item">
                     <Link className="nav-link" style={isActive(history, "/cart")} to="/cart"><i className="fa fa-fw fa-shopping-cart"></i>Cart<sup><small className="cart-badge">{itemTot()}</small></sup></Link>
                 </li>
+                )}
 
                 {isAuthenticated() && isAuthenticated().user.role === 0 && (
                     <li className="nav-item">

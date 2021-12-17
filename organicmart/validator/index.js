@@ -1,10 +1,8 @@
-const validator = require('validator');
-
 exports.userSignupValidator = (req,res, next) => {
     req.check('name','Name is required').notEmpty();
     req.check('email','Email must be between 3 to 32 characters')
     .matches(/.+\@.+\..+/)
-    .withMessage('Email must contain @')
+    .withMessage('Enter Valid email address')
     .isLength({
         min: 4,
         max: 32
@@ -23,12 +21,34 @@ exports.userSignupValidator = (req,res, next) => {
         next();
 }
 
+exports.emailvalidator = ((req,res, next) => {
+    req.check('email','Email is required').notEmpty();
+    req.check('email','Email must be between 3 to 32 characters')
+    .matches(/.+\@.+\..+/)
+    .withMessage('Enter Valid email address')
+    .isLength({
+        min: 4,
+        max: 32
+    });
+    const errors = req.validationErrors();
+    if(errors){
+        const firstError = errors.map(error => error.msg)[0];
+        return res.status(400).json({ error: firstError });
+    }
+    next();
+})
+
 exports.passwordvalidator = ((req,res,next)=>{
-    if(!validator.isLength(req.body.password,{min:6})){
-        let errmsg = "minimum 6 character password required";
-        return res.status(400).json({
-            error: errmsg
-        })
-     }
-     next();
+    req.check('password','Password is required').notEmpty();
+    req.check('password')
+        .isLength({ min: 6 })
+        .withMessage('Password must contain at least 6 characters')
+        .matches(/\d/)
+        .withMessage('Password must contain a number');
+        const errors = req.validationErrors();
+        if(errors){
+            const firstError = errors.map(error => error.msg)[0];
+            return res.status(400).json({ error: firstError });
+        }
+        next();
 })

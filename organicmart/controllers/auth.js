@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-function verifySmtp(){
+const verifySmtp = () => {
     // verify connection configuration
 transporter.verify((error, success) => {
     if (error) {
@@ -59,7 +59,7 @@ exports.signin = (req,res) => {
     User.findOne({email},(err,user) => {
         if(err || !user){
             return res.status(400).json({
-                error:'Email dose not exist.Please Register'
+                error:'Email do not exist.Please Register'
             });
         }
         // match email & pass

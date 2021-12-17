@@ -86,15 +86,15 @@ module.exports = (orders) => {
         </head>
         <body>
            <div class="invoice-box">
-              <table cellpadding="0" cellspacing="0">
+              <table class="table table-striped" cellpadding="0" cellspacing="0">
                <h1 style:"margin:auto">Daily Sales Report(OrganicMart)</h1>
                  <tr class="top">
-                    <td colspan="2">
+                    <td colspan="4">
                        <table>
                           <tr>
-                             <td class=""><img  src="Photo/logo.png" style="width:100%; max-width:390px; max-height:170px"></td><br/>
+                           <td class=""><img  src="" style="width:100%; max-width:390px; max-height:170px"></td><br/>
                              <span style="font-size:25px">
-                                Date: ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
+                                Date: ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}`}
                              </span>
                           </tr>
                        </table>
@@ -119,7 +119,7 @@ module.exports = (orders) => {
                   <td>
                    ${(function productcount() {
              return order.products.map((p, i) => {
-               //  console.log("product", p.name);
+              // console.log("product", p.name);
                 return `<span>${p.name}</span>`
              })
           })()} </td>

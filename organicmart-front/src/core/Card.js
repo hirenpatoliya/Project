@@ -3,10 +3,16 @@ import { Link, Redirect } from 'react-router-dom';
 import ShowImage from './ShowImage';
 import moment from 'moment';
 import { addItem, updateItem, removeItem } from './cartHelpers';
+import { isAuthenticated } from '../auth/index';
+
+const { user } = isAuthenticated();
+const { role } = isAuthenticated();
+
 
 const Card = ({ product, showViewProductBtn = true, showAddToCartBtn = true, cartUpdate = false, removeProductBtn = false, setRun = f => f, run = undefined }) => {
     const [redirect, setRedirect] = useState(false);
     const [count, setCount] = useState(product.count);
+
 
     const showViewBtn = (showViewProductBtn) => {
         return (
@@ -27,7 +33,7 @@ const Card = ({ product, showViewProductBtn = true, showAddToCartBtn = true, car
     }
 
     const showAddToCart = showAddToCartBtn => {
-        return (showAddToCartBtn && (
+        return (showAddToCartBtn && user.role !== 1 (
             <button onClick={addToCart} className="btn btn-outline-warning mt-2 mb-2 ml-2" style={{ width: '45%' }}>Add to cart</button>
         )
         )
