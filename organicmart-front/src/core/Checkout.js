@@ -122,6 +122,7 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
                             className="form-control"
                             value={data.address}
                             placeholder="Type your delivery address here..."
+                            required
                         />
                     </div>
 

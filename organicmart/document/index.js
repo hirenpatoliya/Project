@@ -94,7 +94,7 @@ module.exports = (orders) => {
                           <tr>
                            <td class=""><img  src="" style="width:100%; max-width:390px; max-height:170px"></td><br/>
                              <span style="font-size:25px">
-                                Date: ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}`}
+                                Date: ${`${today.getDate()}/ ${today.getMonth() + 1}/ ${today.getFullYear()}`}
                              </span>
                           </tr>
                        </table>
@@ -123,8 +123,8 @@ module.exports = (orders) => {
                 return `<span>${p.name}</span>`
              })
           })()} </td>
-          <td> ${order.address}</td>
           <td>${order.status}</td>
+          <td> ${order.address}</td>
           <td>${order.amount}</td>
                </tr>              
                `
