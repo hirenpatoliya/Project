@@ -27,15 +27,17 @@ const Menu = ({ history }) => (
                     <Link className="nav-link" style={isActive(history, "/shop")} to="/shop"><i className="fa fa-fw fa-shopping-bag"></i>Shopping</Link>
                 </li>
 
-                {isAuthenticated() && isAuthenticated().user.role === 0 && (<li className="nav-item">
-                    <Link className="nav-link" style={isActive(history, "/cart")} to="/cart"><i className="fa fa-fw fa-shopping-cart"></i>Cart<sup><small className="cart-badge">{itemTot()}</small></sup></Link>
-                </li>
-                )}
+           
+               
 
-                {isAuthenticated() && isAuthenticated().user.role === 0 && (
+                {isAuthenticated() && isAuthenticated().user.role === 0 && (<>
                     <li className="nav-item">
                         <Link className="nav-link" style={isActive(history, "/user/dashboard")} to="/user/dashboard"><i className="fa fa-id-card"></i> Customer Dashboard</Link>
                     </li>
+                    <li className="nav-item">
+                    <Link className="nav-link" style={isActive(history, "/cart")} to="/cart"><i className="fa fa-fw fa-shopping-cart"></i>Cart<sup><small className="cart-badge">{itemTot()}</small></sup></Link>
+                </li>
+                    </>
                 )}
 
                 {isAuthenticated() && isAuthenticated().user.role === 1 && (
@@ -46,6 +48,9 @@ const Menu = ({ history }) => (
 
                 {!isAuthenticated() && (
                     <Fragment>
+                        <li className="nav-item">
+                    <Link className="nav-link" style={isActive(history, "/cart")} to="/cart"><i className="fa fa-fw fa-shopping-cart"></i>Cart<sup><small className="cart-badge">{itemTot()}</small></sup></Link>
+                </li>
                         <li className="nav-item">
                             <Link className="nav-link" style={isActive(history, "/signin")} to="/signin"><i className="fa fa-fw fa-user"></i>Login ✥ Register</Link>
                         </li>

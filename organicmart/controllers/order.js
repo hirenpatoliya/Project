@@ -43,6 +43,20 @@ exports.listOrders = (req, res) => {
                 })
 }
 
+exports.ordersByuser = (req, res) => {
+    // console.log("fired",req.body.id);
+    Order.find({user:req.body.id}).populate("user", "_id name address")
+                .sort("-created")
+                .exec((err, orders) => {
+                    if(err) {
+                        return res.status(400).json({
+                            error: errorHandler(error)
+                        });
+                    }
+                    res.json(orders);
+                })
+}
+
 exports.getStatusValues = (req,res) => {
     res.json(Order.schema.path("status").enumValues);
 }

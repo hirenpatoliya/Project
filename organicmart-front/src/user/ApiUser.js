@@ -42,17 +42,19 @@ export const updateUser = (user, next) => {
     }
 };
 
-export const getPurchaseHistory = (userId, token) => {
-    return fetch(`${API}/orders/by/user/${userId}`, {
-        method: "GET",
+export const orderByuser = (userId) => {
+    return fetch(`${API}/order/by/user`, {
+        method: 'POST',
         headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-        }
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({id: userId})
     })
         .then(response => {
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err);
+        });
 };

@@ -65,7 +65,7 @@ const Signin = () => {
     );
 
     const showLoading = () => (
-        Loading && <div align="center"><div className="alert alert-info col-md-6"><div class="spinner-grow text-info" role="status">
+        Loading && <div align="center"><div className="alert alert-info col-md-6"><div class="spinner-border text-info" role="status">
         </div></div></div>
     );
 

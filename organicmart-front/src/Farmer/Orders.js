@@ -39,7 +39,7 @@ const Orders = () => {
     const showOrdersLength = () => {
         if (orders.length > 0) {
             return (
-                <h3 className="text-primary display-4">Total orders: {orders.length}</h3>
+                <h3 className="text-warning display-3">Total orders: {orders.length}</h3>
             );
         } else {
             return <h3 className="text-danger">No orders</h3>;
@@ -86,8 +86,8 @@ const Orders = () => {
             <Link to="/farmer/dashboard" className="text-secondary">Back to Dashboard</Link>
         </div>
     );
-    function myFunction() {
-        var x = document.getElementById("myDIV");
+    function myFunction(oindex) {
+        var x = document.getElementById(`${oindex}pdiv`);
         if (x.style.display === "none") {
             x.style.display = "block";
         } else {
@@ -104,9 +104,10 @@ const Orders = () => {
 
                     {orders.map((o, oIndex) => {
                         return (
+                            
                             <div className="mt-5" key={oIndex} style={{ borderBottom: "3px solid #00BFFF" }}>
                                 {/* <h2 className="mb-5"><span className="bg-success">Order ID: {o._id}</span></h2> */}
-
+                                <center><h4 className="text-primary"> Order {oIndex+1}</h4></center>
                                 <ul className="list-group mb-2">
                                     <li className="list-group-item"> {showStatus(o)} </li>
                                     {/* <li className="list-group-item"> Transaction ID: {o.transaction_id} </li> */}
@@ -117,9 +118,9 @@ const Orders = () => {
                                 </ul>
 
 
-                                <button className="btn btn-primary mb-2" onClick={myFunction}>Product Detail</button>
-                                <div id="myDIV">
-                                    <h3 className="mt-4 mb-4 font-italic"> Total products in the order:{" "}{o.products.length} </h3>
+                                <center><button className="btn btn-primary mb-2" onClick={()=>{myFunction(oIndex)}}>Product Detail</button></center>
+                                <div id={`${oIndex}pdiv`} style={{display:"none"}}>
+                                    <h3 className="mt-4 mb-4 font-italic">Total products in the order:{" "}{o.products.length} </h3>
                                     {o.products.map((p, pIndex) => (
                                         <div className="mb-4" key={pIndex} style={{ padding: "20px", border: "1px solid #1E90FF" }}>
                                             {showInput("Product Name", p.name)}

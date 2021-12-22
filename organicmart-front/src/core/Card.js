@@ -80,6 +80,7 @@ const Card = ({ product, showViewProductBtn = true, showAddToCartBtn = true, car
                     <p className="black-8">Added on {moment(product.createdAt).fromNow()} </p>
                     {showStock(product.quantity)}<br />
                     {showViewBtn(showViewProductBtn)}
+                    {!isAuthenticated() && showAddToCart(showAddToCartBtn)}
                     {isAuthenticated() && isAuthenticated().user.role === 0 && showAddToCart(showAddToCartBtn)}
                     {showRemoveCart(removeProductBtn)}
                     {showCartUpdateOptions(cartUpdate)}
