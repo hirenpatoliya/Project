@@ -91,7 +91,7 @@ const AddProduct = () => {
                 <textarea onChange={handleChange('description')} className="form-control" value={description} />
             </div>
             <div className="form-group">
-                <label className="form-group">price</label>
+                <label className="form-group">Price</label>
                 <input onChange={handleChange('price')} type="number" className="form-control" value={price} min="1" />
             </div>
             <div className="form-group">
