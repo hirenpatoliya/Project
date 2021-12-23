@@ -56,11 +56,22 @@ const Dashboard = () => {
         );
     };
 
+    const showOrdersLength = () => {
+        if (order.length > 0) {
+            return (
+                <h3 style={{color:'#FFFFFF'}}>You Have Total {order.length} order</h3>
+            );
+        } else {
+            return <h3 className="text-danger">You Have No order History</h3>;
+        }
+    };
+
     const orderHistory = () => {
         return (
             <div className="card bg-info mb-5">
                 <h3 className="card-header">Order History</h3>
                 <ul className="list-group">
+                    {showOrdersLength()}
                     <li className="list-group-item">
                         {order.map((o, i) => {
                             return (

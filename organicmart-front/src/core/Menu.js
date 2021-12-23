@@ -13,7 +13,7 @@ const isActive = (history, path) => {
 
 const Menu = ({ history }) => (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success py-3">
-        <a className="navbar-brand" href="#"><strong>OrganicMart</strong></a>
+        <a className="navbar-brand" href="/"><strong>OrganicMart</strong></a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span className="navbar-toggler-icon"></span>
         </button>
